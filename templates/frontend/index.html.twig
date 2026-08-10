@@ -10,14 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
     <style>
-/* Cavallers del Cel — full-width landing styles */
-html, body, main, main.responsive, .body-wrapper {
-  overflow-x: hidden;
-  max-width: 100% !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
+/* Cavallers del Cel — landing styles (vanilla CSS, export-ready) */
+html, body { overflow-x: hidden; max-width: 100%; }
 
 
 .cdc {
@@ -1167,7 +1161,7 @@ nav li:hover > a.active, .header li:hover > a.active {
 </style>
 {% endblock %}
 
-{% block body %}
+{% block body_wrapper %}
 <div class="cdc">
     <!-- Navbar -->
     
