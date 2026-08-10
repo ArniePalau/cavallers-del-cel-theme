@@ -1,0 +1,1790 @@
+{% extends '@Forumify/frontend/base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+/* Cavallers del Cel — landing styles (vanilla CSS, export-ready) */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+
+.cdc {
+  --cdc-bg: #05080f;
+  --cdc-bg-2: #0b111c;
+  --cdc-fg: #f2f2f2;
+  --cdc-muted: #a8b0bf;
+  --cdc-muted-2: #8a93a3;
+  --cdc-line: #182238;
+  --cdc-red: #1e3a8a;
+  --cdc-red-hover: #2b4bb0;
+  --cdc-accent: #f7c948;
+  --cdc-font-display: "Oswald", "Barlow Condensed", Impact, sans-serif;
+  --cdc-font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  background: var(--cdc-bg);
+  color: var(--cdc-fg);
+  font-family: var(--cdc-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.cdc *,
+.cdc *::before,
+.cdc *::after {
+  box-sizing: border-box;
+}
+
+.cdc a { color: inherit; text-decoration: none; }
+
+/* Override global navbar hover/active colors */
+:root, [data-theme="dark"], [data-theme="light"], body {
+  --primary: #2b4bb0 !important;
+  --ph-primary: #2b4bb0 !important;
+  --ph-primary-color: #2b4bb0 !important;
+  --c-call-to-action: #2b4bb0 !important;
+  --c-call-to-action-accent: #1e3a8a !important;
+}
+
+.ph-navbar a:hover, .ph-navbar a:hover *,
+.ph-navbar a.active, .ph-navbar a.active *,
+.ph-navbar a[aria-expanded="true"], .ph-navbar a[aria-expanded="true"] *,
+.ph-navbar li:hover > a, .ph-navbar li:hover > a *,
+.ph-nav a:hover, .ph-nav a:hover *,
+.ph-nav a.active, .ph-nav a.active *,
+.ph-nav a[aria-expanded="true"], .ph-nav a[aria-expanded="true"] *,
+.ph-nav li:hover > a, .ph-nav li:hover > a *,
+.nav-link:hover, .nav-link:hover *,
+.nav-link.active, .nav-link.active *,
+.nav-link[aria-expanded="true"], .nav-link[aria-expanded="true"] *,
+.nav-item:hover > a, .nav-item:hover > a *,
+.nav-item > a:hover, .nav-item > a:hover *,
+.nav-item > a.active, .nav-item > a.active *,
+.nav-item > a[aria-expanded="true"], .nav-item > a[aria-expanded="true"] *,
+.menu-item:hover > a, .menu-item:hover > a *,
+header a:hover, header a:hover *,
+header a.active, header a.active *,
+header a[aria-expanded="true"], header a[aria-expanded="true"] *,
+header li:hover > a, header li:hover > a *,
+.header a:hover, .header a:hover *,
+.header a.active, .header a.active *,
+.header a[aria-expanded="true"], .header a[aria-expanded="true"] *,
+.header li:hover > a, .header li:hover > a *,
+nav a:hover, nav a:hover *,
+nav a.active, nav a.active *,
+nav a[aria-expanded="true"], nav a[aria-expanded="true"] *,
+nav li:hover > a, nav li:hover > a *,
+[class*="nav"] a:hover, [class*="nav"] a:hover *,
+[class*="nav"] a.active, [class*="nav"] a.active *,
+[class*="nav"] a[aria-expanded="true"], [class*="nav"] a[aria-expanded="true"] *,
+[class*="nav"] li:hover > a, [class*="nav"] li:hover > a *,
+.btn-link:hover, .btn-link:hover *,
+.btn-link.active, .btn-link.active *,
+.btn-link[aria-expanded="true"], .btn-link[aria-expanded="true"] * {
+    color: #2b4bb0 !important;
+}
+
+nav a.active, .header a.active, nav a[aria-expanded="true"], .header a[aria-expanded="true"],
+nav li:hover > a.active, .header li:hover > a.active {
+    background-color: rgba(43, 75, 176, 0.15) !important;
+}
+.cdc img { max-width: 100%; display: block; }
+
+.cdc__container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.cdc__eyebrow {
+  font-family: var(--cdc-font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.cdc__eyebrow::before {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--cdc-red);
+  display: inline-block;
+}
+
+.cdc__h1,
+.cdc__h2 {
+  font-family: var(--cdc-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+  margin: 0;
+  color: var(--cdc-fg);
+}
+.cdc__h1 { font-size: clamp(48px, 9vw, 128px); }
+.cdc__h2 { font-size: clamp(36px, 5vw, 64px); }
+
+.cdc__lead {
+  font-size: clamp(16px, 1.4vw, 20px);
+  color: var(--cdc-muted);
+  max-width: 60ch;
+}
+
+/* Buttons */
+.cdc__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-family: var(--cdc-font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.cdc__btn--primary {
+  background: var(--cdc-red);
+  color: #fff;
+}
+.cdc__btn--primary:hover { background: var(--cdc-red-hover); }
+.cdc__btn--ghost {
+  background: transparent;
+  color: var(--cdc-fg);
+  border-color: var(--cdc-fg);
+}
+.cdc__btn--ghost:hover { background: var(--cdc-fg); color: var(--cdc-bg); }
+.cdc__btn--outline-red {
+  background: transparent;
+  color: var(--cdc-fg);
+  border-color: var(--cdc-red);
+}
+.cdc__btn--outline-red:hover { background: var(--cdc-red); }
+
+/* Placeholders */
+.cdc__ph {
+  position: relative;
+  background:
+    linear-gradient(135deg, #17181b 0%, #0d0e10 100%);
+  border: 1px solid var(--cdc-line);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cdc-muted);
+}
+.cdc__ph::after {
+  content: attr(data-swap);
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+  opacity: 0.7;
+}
+.cdc__ph::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 22px, rgba(255,255,255,0.02) 22px 23px);
+}
+
+/* Nav */
+.cdc__nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+.cdc__nav--scrolled {
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom-color: var(--cdc-line);
+}
+.cdc__nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.cdc__brand {
+  font-family: var(--cdc-font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.cdc__brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+.cdc__nav-links {
+  display: none;
+  gap: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+@media (min-width: 900px) { .cdc__nav-links { display: inline-flex; } }
+.cdc__nav-links a { color: var(--cdc-fg); opacity: 0.85; }
+.cdc__nav-links a:hover { color: var(--cdc-red); opacity: 1; }
+.cdc__nav-cta {
+  padding: 10px 20px;
+  font-size: 12px;
+}
+
+/* Hero */
+.cdc__hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+.cdc__hero-bg {
+  position: absolute; inset: 0;
+  z-index: 0;
+}
+.cdc__hero-bg { background: #05080f; }
+.cdc__hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Scale to cover: use max(100vw, 177.78vh) for width to preserve 16:9 */
+  width: 100vw;
+  height: 56.25vw; /* 16:9 based on width */
+  min-height: 100vh;
+  min-width: 177.78vh; /* 16:9 based on height */
+  transform: translate(-50%, -50%) scale(1.35); /* extra scale hides YT chrome */
+  border: 0;
+  pointer-events: none;
+}
+.cdc__hero-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.95) 100%),
+    radial-gradient(ellipse at 70% 30%, rgba(30,58,138,0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.cdc__hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.cdc__hero-eyebrow { margin-bottom: 24px; }
+.cdc__hero-title { max-width: 14ch; }
+.cdc__hero-sub {
+  margin-top: 24px;
+  max-width: 52ch;
+  font-size: clamp(16px, 1.4vw, 20px);
+  color: #cbd0d6;
+}
+.cdc__hero-ctas {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.cdc__hero-meta {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+  display: none;
+}
+@media (min-width: 1100px) { .cdc__hero-meta { display: block; } }
+
+/* Sections */
+.cdc__section {
+  padding: 120px 0;
+  border-top: 1px solid var(--cdc-line);
+}
+.cdc__section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 64px;
+  max-width: 720px;
+}
+
+/* About */
+.cdc__about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+@media (min-width: 900px) {
+  .cdc__about-grid { grid-template-columns: 1.1fr 0.9fr; gap: 64px; }
+}
+.cdc__about-copy p {
+  font-size: 18px;
+  color: #cbd0d6;
+  max-width: 55ch;
+}
+.cdc__about-image { aspect-ratio: 4/5; }
+
+.cdc__stats {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--cdc-line);
+}
+@media (min-width: 640px) {
+  .cdc__stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .cdc__stats { grid-template-columns: repeat(4, 1fr); }
+}
+.cdc__stat {
+  padding: 32px 24px;
+  border-bottom: 1px solid var(--cdc-line);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.cdc__stat:last-child { border-bottom: 0; }
+@media (min-width: 640px) {
+  .cdc__stat { border-bottom: 0; border-right: 1px solid var(--cdc-line); }
+  .cdc__stat:last-child { border-right: 0; }
+}
+
+.cdc__stat-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--cdc-fg);
+  margin-bottom: 8px;
+}
+.cdc__stat-val {
+  font-family: var(--cdc-font-display);
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--cdc-fg);
+  line-height: 1;
+}
+.cdc__stat-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+  margin-top: 12px;
+}
+
+/* Operations */
+.cdc__ops-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 800px) {
+  .cdc__ops-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.cdc__op-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cdc-bg-2);
+  border: 1px solid var(--cdc-line);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.cdc__op-card:hover { border-color: var(--cdc-red); }
+.cdc__op-image { aspect-ratio: 4/3; }
+.cdc__op-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.cdc__op-code {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cdc-red);
+  font-weight: 600;
+}
+.cdc__op-title {
+  font-family: var(--cdc-font-display);
+  font-size: 26px;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--cdc-fg);
+}
+.cdc__op-brief { color: var(--cdc-muted); font-size: 15px; }
+.cdc__op-cta {
+  margin-top: auto;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cdc-fg);
+  padding-top: 12px;
+  border-top: 1px solid var(--cdc-line);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.cdc__op-cta::after {
+  content: "→";
+  color: var(--cdc-red);
+  transition: transform 0.15s ease;
+}
+.cdc__op-card:hover .cdc__op-cta::after { transform: translateX(4px); }
+
+/* Enlist */
+.cdc__enlist {
+  position: relative;
+  padding: 0;
+  border-top: 1px solid var(--cdc-line);
+}
+.cdc__enlist-bg { position: absolute; inset: 0; z-index: 0; }
+.cdc__enlist-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(10,10,10,0.95));
+}
+.cdc__enlist-inner {
+  position: relative;
+  z-index: 1;
+  padding: 140px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.cdc__enlist-title { max-width: 16ch; }
+.cdc__enlist-body { color: #cbd0d6; max-width: 52ch; margin: 0 auto; }
+.cdc__enlist-cta { margin-top: 16px; }
+.cdc__enlist-reqs {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--cdc-line);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+}
+@media (min-width: 700px) {
+  .cdc__enlist-reqs { grid-template-columns: repeat(3, 1fr); }
+}
+.cdc__req {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.cdc__req::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: var(--cdc-red);
+  display: inline-block;
+}
+
+/* Footer */
+.cdc__footer {
+  border-top: 2px solid var(--cdc-red);
+  padding: 64px 0 32px;
+  background: #060606;
+}
+.cdc__footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--cdc-line);
+}
+@media (min-width: 800px) {
+  .cdc__footer-top { grid-template-columns: 1.4fr repeat(4, 1fr); }
+}
+.cdc__footer-brand p {
+  color: var(--cdc-muted);
+  font-size: 14px;
+  max-width: 32ch;
+  margin: 12px 0 0;
+}
+.cdc__footer-col h4 {
+  font-family: var(--cdc-font-body);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cdc-fg);
+  margin: 0 0 16px;
+}
+.cdc__footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cdc__footer-col a {
+  color: var(--cdc-muted);
+  font-size: 14px;
+  transition: color 0.15s ease;
+}
+.cdc__footer-col a:hover { color: var(--cdc-fg); }
+.cdc__footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  color: var(--cdc-muted);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Reveal on scroll */
+.cdc__reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.cdc__reveal--in { opacity: 1; transform: none; }
+
+/* Community grid */
+.cdc__community-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 900px) {
+  .cdc__community-grid { grid-template-columns: 1.2fr 1fr 1fr; }
+}
+.cdc__panel {
+  background: var(--cdc-bg-2);
+  border: 1px solid var(--cdc-line);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.cdc__panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cdc-line);
+}
+.cdc__panel-title {
+  font-family: var(--cdc-font-display);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+.cdc__panel-meta {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+}
+.cdc__panel-cta { align-self: flex-start; margin-top: auto; }
+
+/* Calendar */
+.cdc__cal-weekdays,
+.cdc__cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cdc__cal-weekdays {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--cdc-muted);
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+}
+.cdc__cal-cell {
+  position: relative;
+  aspect-ratio: 1/1;
+  background: #0a1120;
+  border: 1px solid #131c2e;
+  padding: 4px;
+  font-size: 11px;
+  color: var(--cdc-muted);
+  min-width: 0;
+  overflow: hidden;
+}
+@media (min-width: 500px) {
+  .cdc__cal-cell { min-height: 44px; }
+}
+
+.cdc__cal-cell--today {
+  border-color: var(--cdc-accent);
+  box-shadow: inset 0 0 0 1px var(--cdc-accent);
+}
+.cdc__cal-cell--today .cdc__cal-day { color: var(--cdc-accent); }
+.cdc__cal-day { font-weight: 600; position: relative; z-index: 1; }
+.cdc__cal-tag {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  font-size: 8px;
+  padding: 1px 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cdc__cal-tag--dcs { background: #1e3a8a; }
+.cdc__cal-tag--bms { background: #b91c1c; }
+.cdc__cal-tag--brief { background: #7c3aed; }
+.cdc__cal-tag--arma3 { background: #4d7c0f; }
+.cdc__cal-tag--il2 { background: #a16207; }
+.cdc__cal-tag--starcitizen { background: #0f172a; border: 1px solid #334155; }
+.cdc__cal-tag--op { background: #991b1b; }
+
+/* Live embeds (Discord + Facebook) */
+.cdc__embed {
+  position: relative;
+  background: #000;
+  border: 1px solid var(--cdc-line);
+  overflow: hidden;
+  flex: 1;
+  min-height: 420px;
+}
+.cdc__embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+}
+.cdc__embed--facebook { background: #18191a; }
+
+
+/* Videos */
+.cdc__videos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) { .cdc__videos-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .cdc__videos-grid { grid-template-columns: repeat(4, 1fr); } }
+.cdc__video-card {
+  background: var(--cdc-bg-2);
+  border: 1px solid var(--cdc-line);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease;
+}
+.cdc__video-card:hover { border-color: var(--cdc-red); }
+.cdc__video-thumb {
+  aspect-ratio: 16/9;
+  position: relative;
+}
+.cdc__video-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(30,58,138,0.9);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 2;
+}
+.cdc__video-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cdc__video-title {
+  font-size: 14px;
+  margin: 0;
+  color: var(--cdc-fg);
+  line-height: 1.4;
+}
+.cdc__video-date {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cdc-muted);
+}
+.cdc__videos-foot { margin-top: 40px; text-align: center; }
+
+/* Groups (Els nostres grups) */
+.cdc__section-head--center {
+  align-items: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cdc__groups-lead { margin-top: 4px; }
+.cdc__groups-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 700px) {
+  .cdc__groups-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px) {
+  .cdc__groups-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.cdc__group-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--cdc-bg-2);
+  border: 1px solid var(--cdc-line);
+  padding: 40px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.cdc__group-video-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+.cdc__group-card:hover .cdc__group-video-wrap {
+  opacity: 1;
+}
+.cdc__group-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cdc__group-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(10, 15, 26, 0.7) 0%, rgba(10, 15, 26, 0.85) 100%);
+}
+.cdc__group-emblem,
+.cdc__group-title,
+.cdc__group-body,
+.cdc__group-cta {
+  position: relative;
+  z-index: 2;
+}
+.cdc__group-card:hover { border-color: var(--cdc-red); transform: translateY(-2px); }
+.cdc__group-emblem {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 24px;
+}
+.cdc__group-emblem::after { display: none; }
+.cdc__group-emblem--img {
+  width: 120px;
+  height: 120px;
+  border-radius: 0;
+  object-fit: contain;
+  background: transparent;
+}
+
+.cdc__group-title {
+  font-family: var(--cdc-font-display);
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 12px;
+  color: var(--cdc-fg);
+}
+.cdc__group-body {
+  color: var(--cdc-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  flex: 1;
+}
+.cdc__group-cta {
+  padding: 12px 20px;
+  font-size: 11px;
+  width: 100%;
+  justify-content: center;
+}
+
+
+/* Allistament page */
+.cdc__allistat {
+  padding: 140px 0 80px;
+  min-height: 100vh;
+  background: var(--cdc-bg);
+}
+.cdc__allistat-inner { display: block; }
+.cdc__allistat-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+.cdc__allistat-head .cdc__eyebrow { justify-content: center; }
+.cdc__allistat-title { margin: 16px 0 20px; }
+.cdc__allistat-lead { margin: 0 auto; color: var(--cdc-muted); }
+
+.cdc__allistat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+@media (min-width: 800px) {
+  .cdc__allistat-grid { grid-template-columns: 1fr 1fr; }
+}
+.cdc__allistat-card {
+  background: var(--cdc-bg-2);
+  border: 1px solid var(--cdc-line);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cdc__allistat-badge {
+  font-family: var(--cdc-font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cdc-red);
+  align-self: flex-start;
+  padding: 6px 10px;
+  border: 1px solid var(--cdc-red);
+}
+.cdc__allistat-card-title {
+  font-family: var(--cdc-font-display);
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  color: var(--cdc-fg);
+}
+.cdc__allistat-card-body { color: var(--cdc-muted); margin: 0; font-size: 15px; }
+.cdc__allistat-steps {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--cdc-muted);
+  font-size: 14px;
+}
+.cdc__allistat-steps li {
+  padding-left: 20px;
+  position: relative;
+}
+.cdc__allistat-steps li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  color: var(--cdc-red);
+  font-weight: 700;
+}
+.cdc__allistat-card .cdc__btn { align-self: flex-start; margin-top: auto; }
+
+/* Form */
+.cdc__allistat-form {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--cdc-bg-2);
+  border: 1px solid var(--cdc-line);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cdc__allistat-back {
+  background: none;
+  border: none;
+  color: var(--cdc-muted);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0;
+  align-self: flex-start;
+}
+.cdc__allistat-back:hover { color: var(--cdc-fg); }
+
+.cdc__field { display: flex; flex-direction: column; gap: 8px; }
+.cdc__field label,
+.cdc__field legend {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cdc-fg);
+  padding: 0;
+}
+.cdc__req-mark { color: var(--cdc-red); }
+.cdc__field input,
+.cdc__field textarea {
+  background: var(--cdc-bg);
+  border: 1px solid var(--cdc-line);
+  color: var(--cdc-fg);
+  font-family: var(--cdc-font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  width: 100%;
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.cdc__field input:focus,
+.cdc__field textarea:focus { border-color: var(--cdc-red); }
+.cdc__field textarea { resize: vertical; min-height: 120px; font-family: var(--cdc-font-body); }
+
+.cdc__field--check { border: none; margin: 0; }
+.cdc__check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--cdc-fg);
+  padding: 6px 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+.cdc__check input { width: 16px; height: 16px; accent-color: var(--cdc-red); }
+
+.cdc__allistat-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+
+.cdc__allistat-done {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 48px 24px;
+  border: 1px solid var(--cdc-line);
+  background: var(--cdc-bg-2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* ============================================================
+   A11Y + PERFORMANCE + POLISH (added)
+   ============================================================ */
+
+/* Skip link */
+.cdc__skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--cdc-accent);
+  color: #0a0a0a;
+  font-family: var(--cdc-font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transform: translateY(-150%);
+  transition: transform 0.15s ease;
+}
+.cdc__skip-link:focus { transform: translateY(0); outline: none; }
+
+/* Focus visible — unified across the landing */
+.cdc :focus { outline: none; }
+.cdc a:focus-visible,
+.cdc button:focus-visible,
+.cdc input:focus-visible,
+.cdc textarea:focus-visible,
+.cdc [tabindex]:focus-visible {
+  outline: 2px solid var(--cdc-accent);
+  outline-offset: 3px;
+}
+.cdc__cal-cell:focus-visible { outline-offset: -1px; }
+
+/* Hero poster (shown while iframe loads / when reduced motion) */
+.cdc__hero-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.75) saturate(1.05);
+}
+.cdc__hero-video { z-index: 1; }
+
+/* Nav HUD underline */
+.cdc__nav-link {
+  position: relative;
+  padding: 4px 0;
+}
+.cdc__nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -6px;
+  height: 2px;
+  background: var(--cdc-accent);
+  transition: right 0.25s cubic-bezier(.2,.7,.2,1);
+}
+.cdc__nav-link:hover::after,
+.cdc__nav-link:focus-visible::after { right: 0; }
+
+/* Buttons: subtle shine on hover for primary */
+.cdc__btn { position: relative; overflow: hidden; }
+.cdc__btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
+  pointer-events: none;
+}
+.cdc__btn--primary:hover::before { transform: translateX(120%); }
+.cdc__btn:active { transform: translateY(1px); }
+
+/* Card hover polish (ops + groups) */
+.cdc__op-card,
+.cdc__group-card {
+  transition: border-color 0.25s cubic-bezier(.2,.7,.2,1),
+              transform 0.25s cubic-bezier(.2,.7,.2,1),
+              box-shadow 0.25s cubic-bezier(.2,.7,.2,1);
+}
+.cdc__op-card:hover,
+.cdc__group-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px -20px rgba(30,58,138,0.5);
+}
+.cdc__op-title,
+.cdc__group-title { position: relative; display: inline-block; }
+.cdc__op-title::after,
+.cdc__group-title::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -6px;
+  height: 2px;
+  background: var(--cdc-red);
+  transition: right 0.3s cubic-bezier(.2,.7,.2,1);
+}
+.cdc__op-card:hover .cdc__op-title::after,
+.cdc__group-card:hover .cdc__group-title::after { right: 30%; }
+
+/* Calendar cell hover */
+.cdc__cal-cell {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+.cdc__cal-cell:hover {
+  border-color: rgba(247,201,72,0.5);
+  box-shadow: inset 0 0 12px rgba(247,201,72,0.08);
+}
+
+/* HUD section separator — subtle ticks over the top border */
+.cdc__section {
+  position: relative;
+}
+.cdc__section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--cdc-line) 0 1px,
+    transparent 1px 24px
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Reduced motion — turn everything static */
+@media (prefers-reduced-motion: reduce) {
+  .cdc *,
+  .cdc *::before,
+  .cdc *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .cdc__reveal { opacity: 1 !important; transform: none !important; }
+  .cdc__op-card:hover,
+  .cdc__group-card:hover { transform: none !important; box-shadow: none !important; }
+  .cdc__hero-video { display: none; }
+}
+
+</style>
+{% endblock %}
+
+{% block body_wrapper %}
+<div class="cdc">
+    <!-- Navbar -->
+    
+
+    <main id="contingut">
+        <!-- Hero -->
+        <header id="inici" class="cdc__hero">
+            <div class="cdc__hero-bg" aria-hidden="true">
+                <img src="https://i.ytimg.com/vi/yYpJjA_rmWw/maxresdefault.jpg" alt="" class="cdc__hero-poster" loading="eager" fetchpriority="high">
+                <iframe class="cdc__hero-video" src="https://www.youtube-nocookie.com/embed/yYpJjA_rmWw?autoplay=1&mute=1&loop=1&playlist=yYpJjA_rmWw&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&disablekb=1" title="Cavallers del Cel — vídeo de fons" allow="autoplay; encrypted-media; picture-in-picture" loading="lazy" frameborder="0" tabindex="-1"></iframe>
+            </div>
+            <div class="cdc__container cdc__hero-inner">
+                <span class="cdc__eyebrow cdc__hero-eyebrow">Simulació militar Catalana</span>
+                <h1 class="cdc__h1 cdc__hero-title">El cel és el límit</h1>
+                <p class="cdc__hero-sub">Viu amb nosaltres l'experiència de combat més real i apassionant</p>
+                <div class="cdc__hero-ctas">
+                    <a href="/forum" class="cdc__btn cdc__btn--primary">Entra al fòrum</a>
+                    <a href="#sobre" class="cdc__btn cdc__btn--ghost">Descobreix la comunitat ↓</a>
+                </div>
+            </div>
+            <span class="cdc__hero-meta">Missió 01 · Cavallers del Cel</span>
+        </header>
+
+        <!-- About -->
+        <section id="sobre" class="cdc__section cdc__reveal">
+            <div class="cdc__container">
+                <div class="cdc__section-head">
+                    <span class="cdc__eyebrow">Sobre nosaltres</span>
+                    <h2 class="cdc__h2">Lluitem junts</h2>
+                </div>
+                <div class="cdc__about-grid">
+                    <div class="cdc__about-copy">
+                        <p>Amb la intenció d'omplir un buit existent en la simulació, neix Cavallers del Cel, la primera Comunitat Catalana de Simulació, que pretén impulsar la simulació Catalana, acollint en una mateixa comunitat, a tots aquells que desitgen gaudir dels diferents simuladors en un ambient proper, divertit i exigent.</p>
+                        <div class="cdc__about-features" style="margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem 1.5rem;">
+                            <div class="cdc__feature">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                                    Català
+                                </h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; line-height: 1.5;">Som la primera i única Comunitat Catalana de Simulació. Si t'agrada la simulació i els vols en Català, aquest és el teu lloc.</p>
+                            </div>
+                            <div class="cdc__feature">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    Realisme
+                                </h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; line-height: 1.5;">Per nosaltres el màxim realisme a les partides és un deure. Si és fàcil, simple i no requereix d'un esforç personal, llavors no és per nosaltres.</p>
+                            </div>
+                            <div class="cdc__feature">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                                    Formació
+                                </h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; line-height: 1.5;">La formació contínua dels nostres membres assegura una alta operativitat en combat. Si vols entrenar amb els millors, no busquis més.</p>
+                            </div>
+                            <div class="cdc__feature">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                                    Eines
+                                </h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; line-height: 1.5;">Fem servir les últimes eines que la passió i els diners poden comprar per potenciar el nostre funcionament, com Discord i sistemes dedicats.</p>
+                            </div>
+                            <div class="cdc__feature">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                                    Fòrums
+                                </h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; line-height: 1.5;">Els fòrums més potents per potenciar la nostra activitat al màxim i coordinar operacions de la manera més còmoda.</p>
+                            </div>
+                            <div class="cdc__feature">
+                                <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                    Sense fronteres
+                                </h4>
+                                <p style="font-size: 0.9rem; opacity: 0.8; margin: 0; line-height: 1.5;">No només estem a internet, també a fora, amb cursos, xerrades, trobades i molt més. I és que som molt més que una comunitat de simulació.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cdc__about-image" style="overflow: hidden; position: relative;">
+                        <img id="cdc-scroll-gif" src="/themes/cavallers-del-cel/theme/video-scroll-frames/frame_001.jpg" alt="Lluitem junts" style="object-fit: cover; width: 100%; height: 100%;" loading="lazy">
+                        <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const img = document.getElementById('cdc-scroll-gif');
+                            if (!img) return;
+
+                            const frameCount = 101;
+                            
+                            // Preload frame images for smooth scrubbing
+                            const preloadedImages = [];
+                            for (let i = 1; i <= frameCount; i++) {
+                                const preImage = new Image();
+                                const frameNum = i.toString().padStart(3, '0');
+                                preImage.src = '/themes/cavallers-del-cel/theme/video-scroll-frames/frame_' + frameNum + '.jpg';
+                                preloadedImages.push(preImage);
+                            }
+
+                            function updateScrollFrame() {
+                                const targetElement = document.querySelector('.cdc__groups-lead') || document.querySelector('#grups');
+                                let progress = 0;
+
+                                if (targetElement) {
+                                    const rect = targetElement.getBoundingClientRect();
+                                    const windowHeight = window.innerHeight;
+                                    const currentScroll = window.scrollY || window.pageYOffset;
+                                    
+                                    // Target scroll position where "Quatre fronts" section lead hits center of viewport
+                                    const targetScrollPos = currentScroll + rect.top - (windowHeight * 0.5);
+                                    
+                                    if (targetScrollPos > 0) {
+                                        progress = currentScroll / targetScrollPos;
+                                    } else {
+                                        progress = 1;
+                                    }
+                                } else {
+                                    const rect = img.parentElement.getBoundingClientRect();
+                                    const windowHeight = window.innerHeight;
+                                    progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                                }
+
+                                // Clamp progress between 0 and 1
+                                progress = Math.max(0, Math.min(1, progress));
+
+                                // Pick frame index from 1 to 101
+                                const frameIndex = Math.min(frameCount, Math.max(1, Math.floor(progress * (frameCount - 1)) + 1));
+                                const frameNum = frameIndex.toString().padStart(3, '0');
+                                
+                                img.src = '/themes/cavallers-del-cel/theme/video-scroll-frames/frame_' + frameNum + '.jpg';
+                            }
+
+                            window.addEventListener('scroll', function() {
+                                requestAnimationFrame(updateScrollFrame);
+                            });
+
+                            updateScrollFrame();
+                        });
+                        </script>
+                    </div>
+                </div>
+                <div class="cdc__stats">
+                    <div class="cdc__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cdc__stat-icon"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span class="cdc__stat-val">27</span>
+                        <span class="cdc__stat-label">Membres actius</span>
+                    </div>
+                    <div class="cdc__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cdc__stat-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        <span class="cdc__stat-val">588</span>
+                        <span class="cdc__stat-label">Missions completades</span>
+                    </div>
+                    <div class="cdc__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cdc__stat-icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                        <span class="cdc__stat-val">83</span>
+                        <span class="cdc__stat-label">Condecoracions</span>
+                    </div>
+                    <div class="cdc__stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cdc__stat-icon"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                        <span class="cdc__stat-val">12</span>
+                        <span class="cdc__stat-label">Rangs i cursos</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Groups -->
+        <section id="grups" class="cdc__section cdc__reveal">
+            <div class="cdc__container">
+                <div class="cdc__section-head cdc__section-head--center">
+                    <span class="cdc__eyebrow">Els nostres grups</span>
+                    <h2 class="cdc__h2">Quatre fronts.<br>Una Comunitat.</h2>
+                    <p class="cdc__lead cdc__groups-lead">Cavallers del Cel agrupa quatre divisions especialitzades. Cada soldat tria el seu terreny, i tots comparteixen la mateixa disciplina.</p>
+                </div>
+                <div class="cdc__groups-grid">
+                    <!-- Group cards -->
+                    <article class="cdc__group-card">
+                        <img src="/images/senglars.png" alt="Senglars" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <h3 class="cdc__group-title">DCS World</h3>
+                        <p class="cdc__group-body">Combat aeri modern amb F-18C, A-10C, Ka-50, Mirage 2000 i UH-1H Huey. Novells i veterans, tots benvinguts.</p>
+                        <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió DCS</a>
+                    </article>
+                    <article class="cdc__group-card cdc__group-card--video">
+                        <div class="cdc__group-video-wrap">
+                            <video class="cdc__group-video" src="/themes/cavallers-del-cel/theme/videos/arma3-bg.mp4" loop muted playsinline preload="auto"></video>
+                            <div class="cdc__group-video-overlay"></div>
+                        </div>
+                        <img src="/images/arma_amfibi.png" alt="1er Reconeixement Amfibi" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <h3 class="cdc__group-title">Arma 3</h3>
+                        <p class="cdc__group-body">Reconeixement, infiltració, sabotatge i suport aeri amb els marines catalans del 1er Reconeixement Amfibi.</p>
+                        <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió Arma 3</a>
+                    </article>
+                    <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        document.querySelectorAll('.cdc__group-card--video').forEach(function(card) {
+                            var video = card.querySelector('.cdc__group-video');
+                            if (!video) return;
+
+                            card.addEventListener('mouseenter', function() {
+                                video.play().catch(function() {});
+                            });
+
+                            card.addEventListener('mouseleave', function() {
+                                video.pause();
+                                video.currentTime = 0;
+                            });
+                        });
+                    });
+                    </script>
+                    <article class="cdc__group-card cdc__group-card--video">
+                        <div class="cdc__group-video-wrap">
+                            <video class="cdc__group-video" src="/themes/cavallers-del-cel/theme/videos/starcitizen-bg.mp4" loop muted playsinline preload="auto"></video>
+                            <div class="cdc__group-video-overlay"></div>
+                        </div>
+                        <img src="/images/corbs_blaus.png" alt="Corbs Blaus" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <h3 class="cdc__group-title">Star Citizen</h3>
+                        <p class="cdc__group-body">Els Corbs Blaus: organització de seguretat professional que opera sota contracte a l'espai profund.</p>
+                        <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió Star Citizen</a>
+                    </article>
+                    <article class="cdc__group-card">
+                        <img src="/images/il2_llops.png" alt="IL-2 Sturmovik" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <h3 class="cdc__group-title">IL-2 Sturmovik</h3>
+                        <p class="cdc__group-body">Simulació de combat de la Segona Guerra Mundial amb BF-109, P-51 Mustang i campanyes dinàmiques.</p>
+                        <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió IL-2</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operations -->
+        <section id="operacions" class="cdc__section cdc__reveal">
+            <div class="cdc__container">
+                <div class="cdc__section-head">
+                    <span class="cdc__eyebrow">Operacions destacades</span>
+                    <h2 class="cdc__h2">Missions en curs</h2>
+                </div>
+                <div class="cdc__ops-grid">
+                    <article class="cdc__op-card">
+                        <div class="cdc__ph cdc__op-image" data-swap="Formació de F-16 sobrevolant els Pirineus" aria-hidden="true"></div>
+                        <div class="cdc__op-body">
+                            <span class="cdc__op-code">OP-01 · DCS</span>
+                            <h3 class="cdc__op-title">Escut del Pirineu</h3>
+                            <p class="cdc__op-brief">Patrulla aèria de defensa sobre territori muntanyós.</p>
+                            <span class="cdc__op-cta">Llegir informe</span>
+                        </div>
+                    </article>
+                    <article class="cdc__op-card">
+                        <div class="cdc__ph cdc__op-image" data-swap="F-16 en aproximació a base desèrtica al capvespre" aria-hidden="true"></div>
+                        <div class="cdc__op-body">
+                            <span class="cdc__op-code">OP-02 · BMS</span>
+                            <h3 class="cdc__op-title">Tempesta de sorra</h3>
+                            <p class="cdc__op-brief">Operació d'atac coordinat en escenari desèrtic.</p>
+                            <span class="cdc__op-cta">Llegir informe</span>
+                        </div>
+                    </article>
+                    <article class="cdc__op-card">
+                        <div class="cdc__ph cdc__op-image" data-swap="Caça sobre el mar al matí, formació de dos" aria-hidden="true"></div>
+                        <div class="cdc__op-body">
+                            <span class="cdc__op-code">OP-03 · DCS</span>
+                            <h3 class="cdc__op-title">Vigilància marítima</h3>
+                            <p class="cdc__op-brief">Reconeixement i interceptació sobre el Mediterrani.</p>
+                            <span class="cdc__op-cta">Llegir informe</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community -->
+        <section id="comunitat" class="cdc__section cdc__reveal">
+            <div class="cdc__container">
+                <div class="cdc__section-head">
+                    <span class="cdc__eyebrow">Activitat de la comunitat</span>
+                    <h2 class="cdc__h2">Vola amb l'esquadró</h2>
+                </div>
+                <div class="cdc__community-grid">
+                    <!-- Calendar -->
+                    {% set today = 'now'|date('U') %}
+                    {% set monthName = today|date('F') %}
+                    {% set year = today|date('Y') %}
+                    {% set daysInMonth = today|date('t') %}
+                    {% set firstDayOfMonth = today|date('Y-m-01')|date('w') %}
+                    {% set firstDayIndex = firstDayOfMonth == 0 ? 7 : firstDayOfMonth %}
+                    {% set events = milhq_perscom_events(50) %}
+                    
+                    <div class="cdc__panel cdc__panel--calendar">
+                        <div class="cdc__panel-head">
+                            <h3 class="cdc__panel-title">Calendari d'operacions</h3>
+                            <span class="cdc__panel-meta">{{ monthName }} {{ year }}</span>
+                        </div>
+                        <div class="cdc__cal-weekdays" aria-hidden="true">
+                            <span>DL</span><span>DM</span><span>DC</span><span>DJ</span><span>DV</span><span>DS</span><span>DG</span>
+                        </div>
+                        <div class="cdc__cal-grid" role="list" aria-label="Calendari d'operacions — {{ monthName }} {{ year }}">
+                            {% if firstDayIndex > 1 %}
+                                {% for i in 1..(firstDayIndex - 1) %}
+                                    <div class="cdc__cal-cell" role="presentation"></div>
+                                {% endfor %}
+                            {% endif %}
+                            
+                            {% for i in 1..daysInMonth %}
+                                <div class="cdc__cal-cell {% if i == today|date('j') %}cdc__cal-cell--today{% endif %}" role="listitem">
+                                    <span class="cdc__cal-day">{{ i }}</span>
+                                    {% set currentDateStr = today|date('Y-m-') ~ (i < 10 ? '0' ~ i : i) %}
+                                    {% set currentDayOfWeek = currentDateStr|date('w') %}
+                                    
+                                    {% if currentDayOfWeek == 2 %}
+                                        <span class="cdc__cal-tag cdc__cal-tag--il2" title="IL2">IL2</span>
+                                    {% elseif currentDayOfWeek == 3 or currentDayOfWeek == 6 %}
+                                        <span class="cdc__cal-tag cdc__cal-tag--arma3" title="Arma 3">Arma 3</span>
+                                    {% elseif currentDayOfWeek == 5 %}
+                                        <span class="cdc__cal-tag cdc__cal-tag--dcs" title="DCS">DCS</span>
+                                    {% elseif currentDayOfWeek == 0 %}
+                                        <span class="cdc__cal-tag cdc__cal-tag--starcitizen" title="Star Citizen">Star Citizen</span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                            
+                            {% set totalCells = (firstDayIndex - 1) + daysInMonth %}
+                            {% set remainder = totalCells % 7 %}
+                            {% set emptyEndCells = remainder == 0 ? 0 : 7 - remainder %}
+                            
+                            {% if emptyEndCells > 0 %}
+                                {% for i in 1..emptyEndCells %}
+                                    <div class="cdc__cal-cell" role="presentation"></div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Discord -->
+                    <div class="cdc__panel cdc__panel--discord">
+                        <div class="cdc__panel-head">
+                            <h3 class="cdc__panel-title">Canal Discord</h3>
+                            <span class="cdc__panel-meta">En viu</span>
+                        </div>
+                        <div class="cdc__embed cdc__embed--discord">
+                            <iframe title="Discord — Cavallers del Cel" src="https://discord.com/widget?id=152173369813368832&theme=dark" allowtransparency="true" loading="lazy" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                        </div>
+                        <a class="cdc__btn cdc__btn--primary cdc__panel-cta" href="https://discord.gg/4RGJdTv" target="_blank" rel="noopener noreferrer">Uneix-te a Discord</a>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="cdc__panel cdc__panel--facebook">
+                        <div class="cdc__panel-head">
+                            <h3 class="cdc__panel-title">Murs de Facebook</h3>
+                            <span class="cdc__panel-meta">Social</span>
+                        </div>
+                        <div class="cdc__embed cdc__embed--facebook" style="background:#fff; border-radius: var(--cdc-radius-md);">
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcavallersdelcel&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Videos -->
+        <section id="videos" class="cdc__section cdc__reveal">
+            <div class="cdc__container">
+                <div class="cdc__section-head">
+                    <span class="cdc__eyebrow">Últims vídeos oficials</span>
+                    <h2 class="cdc__h2">Del cel a la pantalla</h2>
+                </div>
+                <div class="cdc__videos-grid">
+                    {% set videos = milhq_latest_videos(8) %}
+                    
+                    {% for video in videos %}
+                        <a href="{{ video.url|default('#') }}" target="_blank" rel="noopener noreferrer" class="cdc__video-card" style="text-decoration: none;">
+                            <div class="cdc__video-thumb" style="background-image: url('{{ video.thumbnail|default('') }}'); background-size: cover; background-position: center;">
+                                <span class="cdc__video-play" aria-hidden="true">▶</span>
+                            </div>
+                            <div class="cdc__video-body">
+                                <h3 class="cdc__video-title" title="{{ video.title|default('') }}">{{ video.title|default('')|length > 60 ? video.title[:57] ~ '...' : video.title|default('') }}</h3>
+                                <span class="cdc__video-date">{{ video.published|default('') }}</span>
+                            </div>
+                        </a>
+                    {% else %}
+                        <p style="color: var(--cdc-muted);">No s'han trobat vídeos recents.</p>
+                    {% endfor %}
+                </div>
+                <div class="cdc__videos-foot">
+                    <a href="#" class="cdc__btn cdc__btn--outline-red">Veure més vídeos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enlist -->
+        <section id="allistament" class="cdc__enlist cdc__reveal">
+            <div class="cdc__enlist-bg cdc__ph" data-swap="Silueta de pilots a la pista" aria-hidden="true"></div>
+            <div class="cdc__container cdc__enlist-inner">
+                <div class="cdc__allistat-head">
+                    <span class="cdc__eyebrow">Allistament obert</span>
+                    <h2 class="cdc__h2 cdc__allistat-title">Uneix-te a l'esquadró</h2>
+                    <p class="cdc__lead cdc__allistat-lead">
+                        Tria com vols demanar l'accés als grups. Totes dues vies són igual de valides.
+                    </p>
+                </div>
+
+                <div id="cdc-mode-choose" class="cdc__allistat-grid">
+                    <article class="cdc__allistat-card" style="text-align: left;">
+
+                        <h3 class="cdc__allistat-card-title">Discord</h3>
+                        <p class="cdc__allistat-card-body">
+                            Entra al nostre Discord, presenta't al canal de nous pilots i un responsable et donarà accés al grup que t'interessi.
+                        </p>
+                        <ul class="cdc__allistat-steps">
+                            <li>Uneix-te al servidor de Discord</li>
+                            <li>Vés al canal <strong>#benvinguda</strong></li>
+                            <li>Explica qui ets i quins grups t'interessen</li>
+                        </ul>
+                        <a href="https://discord.gg/4RGJdTv" target="_blank" rel="noreferrer" class="cdc__btn cdc__btn--primary" style="align-self: flex-start; margin-top: auto;">
+                            Entrar al Discord
+                        </a>
+                    </article>
+
+                    <article class="cdc__allistat-card" style="text-align: left;">
+
+                        <h3 class="cdc__allistat-card-title">Formulari</h3>
+                        <p class="cdc__allistat-card-body">
+                            Prefereixes fer-ho per escrit? Omple el formulari d'allistament i et contactarem per email amb els passos següents.
+                        </p>
+                        <ul class="cdc__allistat-steps">
+                            <li>Dades bàsiques (nick, edat, email)</li>
+                            <li>Grups que t'interessen</li>
+                            <li>Una breu presentació</li>
+                        </ul>
+                        <button type="button" class="cdc__btn cdc__btn--outline-red" style="align-self: flex-start; margin-top: auto;" onclick="document.getElementById('cdc-mode-choose').style.display='none'; document.getElementById('cdc-mode-form').style.display='block';">
+                            Omplir formulari
+                        </button>
+                    </article>
+                </div>
+
+                <form id="cdc-mode-form" class="cdc__allistat-form" novalidate style="display: none; max-width: 600px; margin: 0 auto; text-align: left; width: 100%;">
+                    <button type="button" class="cdc__allistat-back" style="background: none; border: none; color: var(--cdc-muted); cursor: pointer; margin-bottom: 24px; padding: 0; font-size: 16px;" onclick="document.getElementById('cdc-mode-form').style.display='none'; document.getElementById('cdc-mode-choose').style.display='grid';">
+                        ← Tornar a les opcions
+                    </button>
+
+                    <div class="cdc__field" style="margin-bottom: 16px;">
+                        <label for="allistat-nick" style="display: block; margin-bottom: 8px;">Nick <span class="cdc__req-mark" style="color: var(--cdc-red);">*</span></label>
+                        <input id="allistat-nick" type="text" required maxlength="40" placeholder="Escriu el teu nick" style="width: 100%; padding: 12px; background: var(--cdc-bg-2); border: 1px solid var(--cdc-line); color: var(--cdc-fg); border-radius: 4px;">
+                    </div>
+
+                    <div class="cdc__field" style="margin-bottom: 16px;">
+                        <label for="allistat-edat" style="display: block; margin-bottom: 8px;">Edat</label>
+                        <input id="allistat-edat" type="number" min="0" max="120" placeholder="Escriu la teva edat" style="width: 100%; padding: 12px; background: var(--cdc-bg-2); border: 1px solid var(--cdc-line); color: var(--cdc-fg); border-radius: 4px;">
+                    </div>
+
+                    <div class="cdc__field" style="margin-bottom: 16px;">
+                        <label for="allistat-conegut" style="display: block; margin-bottom: 8px;">Com ens has conegut</label>
+                        <input id="allistat-conegut" type="text" maxlength="200" placeholder="Escriu com ens has conegut" style="width: 100%; padding: 12px; background: var(--cdc-bg-2); border: 1px solid var(--cdc-line); color: var(--cdc-fg); border-radius: 4px;">
+                    </div>
+
+                    <div class="cdc__field" style="margin-bottom: 16px;">
+                        <label for="allistat-email" style="display: block; margin-bottom: 8px;">Email <span class="cdc__req-mark" style="color: var(--cdc-red);">*</span></label>
+                        <input id="allistat-email" type="email" required maxlength="255" placeholder="Escriu el teu correu electrònic" style="width: 100%; padding: 12px; background: var(--cdc-bg-2); border: 1px solid var(--cdc-line); color: var(--cdc-fg); border-radius: 4px;">
+                    </div>
+
+                    <fieldset class="cdc__field cdc__field--check" style="margin-bottom: 16px; border: none; padding: 0;">
+                        <legend style="margin-bottom: 8px;">Grups que t'interessen <span class="cdc__req-mark" style="color: var(--cdc-red);">*</span></legend>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label class="cdc__check" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" name="allistat-grups" value="Arma">
+                                <span>Arma</span>
+                            </label>
+                            <label class="cdc__check" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" name="allistat-grups" value="DCS World">
+                                <span>DCS World</span>
+                            </label>
+                            <label class="cdc__check" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" name="allistat-grups" value="IL-2 Sturmovik">
+                                <span>IL-2 Sturmovik</span>
+                            </label>
+                            <label class="cdc__check" style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" name="allistat-grups" value="Star Citizen">
+                                <span>Star Citizen</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="cdc__field" style="margin-bottom: 24px;">
+                        <label for="allistat-presentacio" style="display: block; margin-bottom: 8px;">
+                            Presentació <span class="cdc__req-mark" style="color: var(--cdc-red);">*</span>
+                        </label>
+                        <textarea id="allistat-presentacio" required rows="6" maxlength="2000" placeholder="Escriu la teva presentació" style="width: 100%; padding: 12px; background: var(--cdc-bg-2); border: 1px solid var(--cdc-line); color: var(--cdc-fg); resize: vertical; border-radius: 4px;"></textarea>
+                    </div>
+
+                    <div class="cdc__allistat-actions" style="display: flex; gap: 16px;">
+                        <button type="submit" class="cdc__btn cdc__btn--primary">Enviar</button>
+                        <button type="reset" class="cdc__btn cdc__btn--ghost">Netejar</button>
+                    </div>
+                </form>
+
+                <div id="cdc-mode-sent" class="cdc__allistat-done" role="status" aria-live="polite" style="display: none; max-width: 600px; margin: 0 auto; text-align: center;">
+                    <h3 class="cdc__h2 cdc__allistat-title" style="margin-bottom: 16px;">Gràcies per l'interès!</h3>
+                    <p class="cdc__lead" style="margin-bottom: 24px;">
+                        S'ha obert el teu client de correu amb l'allistament. Envia el missatge i et respondrem al més aviat possible.
+                    </p>
+                    <button type="button" class="cdc__btn cdc__btn--outline-red" onclick="document.getElementById('cdc-mode-sent').style.display='none'; document.getElementById('cdc-mode-choose').style.display='grid';">
+                        Tornar a les opcions
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var form = document.getElementById('cdc-mode-form');
+                if(form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        var nick = document.getElementById('allistat-nick').value;
+                        var email = document.getElementById('allistat-email').value;
+                        var edat = document.getElementById('allistat-edat').value;
+                        var conegut = document.getElementById('allistat-conegut').value;
+                        var presentacio = document.getElementById('allistat-presentacio').value;
+                        
+                        var grupsEls = document.querySelectorAll('input[name="allistat-grups"]:checked');
+                        if (!nick || !email || !presentacio || grupsEls.length === 0) {
+                            alert('Si us plau, omple tots els camps obligatoris i selecciona almenys un grup.');
+                            return;
+                        }
+                        
+                        var grups = Array.from(grupsEls).map(function(el) { return el.value; }).join(', ');
+                        
+                        var emailBody = "Nick: " + nick + "\nEdat: " + edat + "\nCom ens has conegut: " + conegut + "\nEmail: " + email + "\nGrups: " + grups + "\n\nPresentació:\n" + presentacio;
+                        
+                        window.location.href = "mailto:contacte@cavallersdelcel.cat?subject=" + encodeURIComponent("Allistament — " + nick) + "&body=" + encodeURIComponent(emailBody);
+                        
+                        document.getElementById('cdc-mode-form').style.display = 'none';
+                        document.getElementById('cdc-mode-sent').style.display = 'block';
+                        this.reset();
+                    });
+                }
+            });
+        </script>
+    </main>
+
+    <!-- Footer -->
+    <footer class="cdc__footer">
+        <div class="cdc__container">
+            <div class="cdc__footer-top">
+                <div class="cdc__footer-brand">
+                    <div class="cdc__brand">
+                        <img src="{{ logo }}" alt="logo" style="width: 32px; height: 32px; margin-right: 12px; object-fit: contain;">
+                        Cavallers del Cel
+                    </div>
+                    <p>La comunitat catalana de simulació de combat. Volant junts des de fa anys, amb disciplina i companyonia.</p>
+                </div>
+                <div class="cdc__footer-col">
+                    <h4>Divisions</h4>
+                    <ul>
+                        <li><a href="#">DCS World</a></li>
+                        <li><a href="#">BMS</a></li>
+                        <li><a href="#">Arma 3</a></li>
+                        <li><a href="#">IL-2 Sturmovik</a></li>
+                    </ul>
+                </div>
+                <div class="cdc__footer-col">
+                    <h4>Més informació</h4>
+                    <ul>
+                        <li><a href="#">Normativa</a></li>
+                        <li><a href="#">Contacte</a></li>
+                        <li><a href="#">Equipament</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cdc__footer-bottom">
+                <span>© 2026 Cavallers del Cel. Tots els drets reservats.</span>
+                <a href="https://www.cavallersdelcel.cat">cavallersdelcel.cat</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<style>
+/* CSS fix for the images */
+.cdc__hero-bg img, .cdc__about-image img, .cdc__op-image img, .cdc__enlist-bg img { 
+    width: 100%; height: 100%; object-fit: cover; 
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Sticky Nav
+    const nav = document.getElementById("cdc-navbar");
+    if (nav) {
+        const onScroll = () => {
+            if (window.scrollY > 40) {
+                nav.classList.add("cdc__nav--scrolled");
+            } else {
+                nav.classList.remove("cdc__nav--scrolled");
+            }
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    // Scroll Reveal Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("cdc__reveal--in");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    document.querySelectorAll(".cdc__reveal").forEach((el) => {
+        observer.observe(el);
+    });
+
+    // Disable videos if reduced motion is requested
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleMotion = (e) => {
+        const iframe = document.querySelector(".cdc__hero-video");
+        if (iframe) {
+            iframe.style.display = e.matches ? "none" : "block";
+        }
+    };
+    if (motionQuery) {
+        handleMotion(motionQuery);
+        motionQuery.addEventListener("change", handleMotion);
+    }
+});
+</script>
+{% endblock %}
