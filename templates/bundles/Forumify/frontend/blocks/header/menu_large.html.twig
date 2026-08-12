@@ -1,0 +1,46 @@
+{% extends '@!Forumify/frontend/blocks/header/menu_large.html.twig' %}
+{% block menu_large %}
+    <style>
+        .cdc-old-menu ul { list-style: none; display: flex; margin: 0; padding: 0; gap: 2rem; align-items: center; }
+        .cdc-old-menu li { margin: 0; padding: 0; }
+        .cdc-old-menu a { 
+            color: #fff !important; 
+            opacity: 0.8; 
+            text-transform: uppercase; 
+            font-family: 'Oswald', sans-serif; 
+            font-size: 14px; 
+            font-weight: 500; 
+            letter-spacing: 0.05em; 
+            text-decoration: none; 
+            transition: opacity 0.2s ease, color 0.2s ease; 
+        }
+        .cdc-old-menu a:hover, .cdc-old-menu a.active { opacity: 1; color: var(--cdc-red) !important; }
+        .cdc-user-dropdown { display: flex; align-items: center; cursor: pointer; color: #fff !important; opacity: 0.9; font-family: 'Inter', sans-serif; font-size: 14px; margin-left: 1rem; }
+        .cdc-user-dropdown:hover { opacity: 1; }
+    </style>
+    <div class="flex-grow flex flex-row items-center justify-between hide-phone">
+        <nav class="cdc-old-menu flex flex-wrap flex-grow justify-end text-large pr-3 mr-3 border-r" style="border: none; margin-right: 1.5rem;">
+            {{ forum_menu() }}
+        </nav>
+        {% if app.user is not null %}
+            <div class="flex flex-row">
+                <div {{ stimulus_controller('forumify/forumify-platform/menu', { placement: 'bottom-end' }) }}>
+                    <a class="btn-link header-menu pl-2 cdc-user-dropdown" {{ stimulus_target('forumify/forumify-platform/menu', 'openButton') }}>
+                        {% include '@Forumify/components/avatar.html.twig' with {
+                            user: app.user,
+                            className: 'avatar-sm',
+                        } only %}
+                        <span class="ml-2">{{ app.user.displayName }}</span>
+                    </a>
+                    <div class="menu" {{ stimulus_target('forumify/forumify-platform/menu', 'menu') }}>
+                        {% include '@Forumify/frontend/blocks/header/fixed_menu.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <a class="cdc__btn cdc__btn--outline-red cdc__nav-cta" href="{{ path('forumify_core_login', { '_target_path': app.request.requestUri }) }}">
+                {{ 'login'|trans }}
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
