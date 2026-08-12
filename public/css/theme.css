@@ -87,6 +87,10 @@ body {
 }
 
 /* Hero Section Height Adjustment */
+#cdc-navbar-wrapper {
+    min-height: 0 !important;
+}
+
 .cdc__hero {
     min-height: 60vh !important;
     padding: 60px 0 40px !important;
