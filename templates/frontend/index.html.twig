@@ -1442,7 +1442,7 @@ nav li:hover > a.active, .header li:hover > a.active {
                     {% set daysInMonth = today|date('t') %}
                     {% set firstDayOfMonth = today|date('Y-m-01')|date('w') %}
                     {% set firstDayIndex = firstDayOfMonth == 0 ? 7 : firstDayOfMonth %}
-                    {% set events = milhq_perscom_events(50) %}
+                    {% set events = milhq_perscom_events is defined ? milhq_perscom_events(50) : [] %}
                     
                     <div class="cdc__panel cdc__panel--calendar">
                         <div class="cdc__panel-head">
