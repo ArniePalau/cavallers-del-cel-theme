@@ -31,7 +31,7 @@ class CavallersDelCelTheme extends AbstractForumifyTheme
     public function getThemeConfig(): ThemeConfig
     {
         return new ThemeConfig(
-            hasDarkVariant: true,
+            hasDarkVariant: false,
             vars: [
                 new ThemeVar(
                     key: 'cdc-primary',
