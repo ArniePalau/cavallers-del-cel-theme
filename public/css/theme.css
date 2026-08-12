@@ -89,10 +89,13 @@ body {
 html, body {
     overflow-x: hidden !important;
     overflow-y: auto !important;
+    height: auto !important;
 }
 
-.ph-app, .ph-main, .ph-layout {
+main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-content {
     overflow: visible !important;
+    overflow-y: visible !important;
+    max-height: none !important;
 }
 
 /* Hero Section Height & Overflow Fix */
