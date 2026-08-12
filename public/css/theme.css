@@ -86,7 +86,16 @@ body {
     object-fit: cover;
 }
 
-/* Hero Section Height Adjustment */
+html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+.ph-app, .ph-main, .ph-layout {
+    overflow: visible !important;
+}
+
+/* Hero Section Height & Overflow Fix */
 #cdc-navbar-wrapper {
     min-height: 0 !important;
 }
@@ -96,6 +105,7 @@ body {
     height: calc(100vh - 60px) !important;
     padding: 80px 0 80px !important;
     margin-top: 0 !important;
+    overflow: hidden !important;
 }
 
 /* Force Admin Panel Dark Mode */
