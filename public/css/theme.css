@@ -105,6 +105,13 @@ body {
     border-color: #1e293b !important;
 }
 
+/* 4 Stats in 1 Single Row on Desktop */
+@media (min-width: 768px) {
+    .cdc__stats {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
 .ph-sidebar a, .admin-sidebar a, .nav-link, aside a, .sidebar a {
     color: #cbd5e1 !important;
 }
