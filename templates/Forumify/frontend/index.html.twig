@@ -267,10 +267,10 @@ nav li:hover > a.active, .header li:hover > a.active {
 /* Hero */
 .cdc__hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 55vh;
   display: flex;
   align-items: flex-end;
-  padding: 120px 0 80px;
+  padding: 50px 0 50px;
   overflow: hidden;
 }
 .cdc__hero-bg {
@@ -1342,7 +1342,7 @@ nav li:hover > a.active, .header li:hover > a.active {
                 <div class="cdc__groups-grid">
                     <!-- Group cards -->
                     <article class="cdc__group-card">
-                        <img src="{{ asset('bundles/cavallersdelceltheme/images/senglars.png') }}" alt="Senglars" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <img src="/themes/cavallers-del-cel/theme/images/senglars.png" alt="Senglars" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
                         <h3 class="cdc__group-title">DCS World</h3>
                         <p class="cdc__group-body">Combat aeri modern amb F-18C, A-10C, Ka-50, Mirage 2000 i UH-1H Huey. Novells i veterans, tots benvinguts.</p>
                         <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió DCS</a>
@@ -1352,7 +1352,7 @@ nav li:hover > a.active, .header li:hover > a.active {
                             <video class="cdc__group-video" src="/themes/cavallers-del-cel/theme/videos/arma3-bg.mp4" loop muted playsinline preload="auto"></video>
                             <div class="cdc__group-video-overlay"></div>
                         </div>
-                        <img src="{{ asset('bundles/cavallersdelceltheme/images/arma_amfibi.png') }}" alt="1er Reconeixement Amfibi" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <img src="/themes/cavallers-del-cel/theme/images/arma_amfibi.png" alt="1er Reconeixement Amfibi" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
                         <h3 class="cdc__group-title">Arma 3</h3>
                         <p class="cdc__group-body">Reconeixement, infiltració, sabotatge i suport aeri amb els marines catalans del 1er Reconeixement Amfibi.</p>
                         <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió Arma 3</a>
@@ -1379,13 +1379,13 @@ nav li:hover > a.active, .header li:hover > a.active {
                             <video class="cdc__group-video" src="/themes/cavallers-del-cel/theme/videos/starcitizen-bg.mp4" loop muted playsinline preload="auto"></video>
                             <div class="cdc__group-video-overlay"></div>
                         </div>
-                        <img src="{{ asset('bundles/cavallersdelceltheme/images/corbs_blaus.png') }}" alt="Corbs Blaus" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <img src="/themes/cavallers-del-cel/theme/images/corbs_blaus.png" alt="Corbs Blaus" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
                         <h3 class="cdc__group-title">Star Citizen</h3>
                         <p class="cdc__group-body">Els Corbs Blaus: organització de seguretat professional que opera sota contracte a l'espai profund.</p>
                         <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió Star Citizen</a>
                     </article>
                     <article class="cdc__group-card">
-                        <img src="{{ asset('bundles/cavallersdelceltheme/images/il2_llops.png') }}" alt="IL-2 Sturmovik" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
+                        <img src="/themes/cavallers-del-cel/theme/images/il2_llops.png" alt="IL-2 Sturmovik" class="cdc__group-emblem cdc__group-emblem--img" loading="lazy">
                         <h3 class="cdc__group-title">IL-2 Sturmovik</h3>
                         <p class="cdc__group-body">Simulació de combat de la Segona Guerra Mundial amb BF-109, P-51 Mustang i campanyes dinàmiques.</p>
                         <a href="#" class="cdc__btn cdc__btn--ghost cdc__group-cta">Divisió IL-2</a>
@@ -1530,9 +1530,9 @@ nav li:hover > a.active, .header li:hover > a.active {
                 </div>
                 <div class="cdc__videos-grid">
                     {% set fallbackVideos = [
-                        { 'title': 'Trailer Oficial Cavallers del Cel 2026', 'url': 'https://www.youtube.com/@CavallersdelCel', 'thumbnail': asset('bundles/cavallersdelceltheme/images/hero_bg.png'), 'published': 'Canal Oficial' },
-                        { 'title': 'Operació Escut del Pirineu - DCS World', 'url': 'https://www.youtube.com/@CavallersdelCel', 'thumbnail': asset('bundles/cavallersdelceltheme/images/hero_bg.png'), 'published': 'Divisió DCS' },
-                        { 'title': 'Maniobres d\'Entrenament Aeri 1er Reconeixement', 'url': 'https://www.youtube.com/@CavallersdelCel', 'thumbnail': asset('bundles/cavallersdelceltheme/images/hero_bg.png'), 'published': 'Divisió Arma 3' }
+                        { 'title': 'Trailer Oficial Cavallers del Cel 2026', 'url': 'https://www.youtube.com/watch?v=yYpJjA_rmWw', 'thumbnail': 'https://i.ytimg.com/vi/yYpJjA_rmWw/hqdefault.jpg', 'published': 'Canal Oficial' },
+                        { 'title': 'Operació Escut del Pirineu — DCS World', 'url': 'https://www.youtube.com/watch?v=yYpJjA_rmWw', 'thumbnail': '/themes/cavallers-del-cel/theme/images/hero_bg.png', 'published': 'Divisió DCS' },
+                        { 'title': 'Maniobres d\'Entrenament Aeri — 1er Reconeixement', 'url': 'https://www.youtube.com/watch?v=yYpJjA_rmWw', 'thumbnail': '/themes/cavallers-del-cel/theme/images/hero_bg.png', 'published': 'Divisió Arma 3' }
                     ] %}
                     {% set displayVideos = (videos is defined and videos is not empty and videos is iterable) ? videos : fallbackVideos %}
                     

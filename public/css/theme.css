@@ -86,6 +86,13 @@ body {
     object-fit: cover;
 }
 
+/* Hero Section Height Adjustment */
+.cdc__hero {
+    min-height: 60vh !important;
+    padding: 60px 0 40px !important;
+    margin-top: 0 !important;
+}
+
 /* Force Admin Panel Dark Mode */
 .admin-layout, .ph-admin-app, .ph-sidebar, .ph-topbar, .admin-sidebar, .admin-header, .admin-content, table, tr, td, th, .card, .panel, nav, aside {
     background-color: #0c1017 !important;
