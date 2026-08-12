@@ -1523,7 +1523,7 @@ nav li:hover > a.active, .header li:hover > a.active {
                     <h2 class="cdc__h2">Del cel a la pantalla</h2>
                 </div>
                 <div class="cdc__videos-grid">
-                    {% set videos = milhq_latest_videos(8) %}
+                    {% set videos = videos is defined and videos is iterable ? videos : [] %}
                     
                     {% for video in videos %}
                         <a href="{{ video.url|default('#') }}" target="_blank" rel="noopener noreferrer" class="cdc__video-card" style="text-decoration: none;">

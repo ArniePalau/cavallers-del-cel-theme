@@ -85,3 +85,20 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* Force Admin Panel Dark Mode */
+.admin-layout, .ph-admin-app, .ph-sidebar, .ph-topbar, .admin-sidebar, .admin-header, .admin-content, table, tr, td, th, .card, .panel, nav, aside {
+    background-color: #0c1017 !important;
+    color: #e2e8f0 !important;
+    border-color: #1e293b !important;
+}
+
+.ph-sidebar a, .admin-sidebar a, .nav-link, aside a, .sidebar a {
+    color: #cbd5e1 !important;
+}
+
+.table, table, tbody, td, th {
+    background-color: #0c1017 !important;
+    color: #e2e8f0 !important;
+    border-color: #1e293b !important;
+}
