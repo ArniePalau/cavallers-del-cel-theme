@@ -1050,7 +1050,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
             <div class="cdc__container cdc__nav-inner" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 {% block header_logo %}
                     <a href="{{ path('forumify_core_index') }}" class="cdc__brand" aria-label="{{ setting('forumify.title') }}">
-                        <img src="{{ logo }}" alt="logo" style="width: 32px; height: 32px; margin-right: 8px;">
+                        <img src="{{ logo }}" alt="logo" style="height: 42px; width: auto; object-fit: contain; margin-right: 8px;">
                         {{ setting('forumify.title') }}
                     </a>
                 {% endblock %}
