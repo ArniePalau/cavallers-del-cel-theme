@@ -112,7 +112,8 @@ main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-cont
 }
 
 /* Force Admin Panel Dark Mode */
-.admin-layout, .ph-admin-app, .ph-sidebar, .ph-topbar, .admin-sidebar, .admin-header, .admin-content, table, tr, td, th, .card, .panel, nav, aside {
+.admin-layout, .ph-admin-app, .ph-sidebar, .ph-topbar, .admin-sidebar, .admin-header, .admin-content, table, tr, td, th, .card, .panel,
+.admin-layout nav, .admin-layout aside, .ph-admin-app nav, .ph-admin-app aside {
     background-color: #0c1017 !important;
     color: #e2e8f0 !important;
     border-color: #1e293b !important;
