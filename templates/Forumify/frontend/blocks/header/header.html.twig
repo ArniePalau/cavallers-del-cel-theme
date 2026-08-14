@@ -147,17 +147,26 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 
 /* Nav */
+#cdc-navbar-wrapper {
+  background: transparent !important;
+  min-height: 0 !important;
+}
 .cdc__nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 50;
-  transition: background 0.2s ease, border-color 0.2s ease;
-  border-bottom: 1px solid transparent;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(5, 8, 15, 0.45) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
 }
 .cdc__nav--scrolled {
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(8px);
-  border-bottom-color: var(--cdc-line);
+  background: rgba(5, 8, 15, 0.78) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 .cdc__nav-inner {
   display: flex;
@@ -1045,7 +1054,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
 }
 
     </style>
-    <div class="cdc" id="cdc-navbar-wrapper">
+    <div class="cdc" id="cdc-navbar-wrapper" style="background: transparent !important;">
         <nav class="cdc__nav {% if app.request.attributes.get('_route') != 'forumify_core_index' %}cdc__nav--scrolled{% endif %}" aria-label="Principal" id="cdc-navbar" style="{% if app.request.attributes.get('_route') == 'forumify_core_index' %}position: fixed;{% else %}position: sticky;{% endif %} top: 0; z-index: 50; width: 100%;">
             <div class="cdc__container cdc__nav-inner" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 {% block header_logo %}

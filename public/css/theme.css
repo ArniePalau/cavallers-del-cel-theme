@@ -98,9 +98,26 @@ main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-cont
     max-height: none !important;
 }
 
-/* Hero Section Height & Overflow Fix */
+/* Translucent Glassmorphic Navbar */
 #cdc-navbar-wrapper {
+    background: transparent !important;
     min-height: 0 !important;
+}
+
+.cdc__nav {
+    background: rgba(5, 8, 15, 0.45) !important;
+    backdrop-filter: blur(12px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.cdc__nav--scrolled {
+    background: rgba(5, 8, 15, 0.78) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
 }
 
 .cdc__hero {
