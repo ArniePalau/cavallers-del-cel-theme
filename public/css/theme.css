@@ -107,19 +107,20 @@ main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-cont
 }
 
 .cdc__nav, header.header {
-    background: rgba(5, 8, 15, 0.3) !important;
-    backdrop-filter: blur(12px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(5, 8, 15, 0.4) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
     transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .cdc__nav--scrolled, header.header:not(.header-transparent) {
-    background: rgba(5, 8, 15, 0.8) !important;
-    backdrop-filter: blur(16px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+    background: rgba(5, 8, 15, 0.6) !important;
+    backdrop-filter: blur(20px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
 .cdc__hero {
@@ -155,21 +156,32 @@ main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-cont
     border-color: #1e293b !important;
 }
 
-/* Header & Menu Typography (Oswald Bold Condensed) */
+/* Brand Title (22px Bold) */
+.cdc__brand, .header-logo span, a.cdc__brand, a.header-logo {
+    font-family: 'Oswald', 'Barlow Condensed', Impact, sans-serif !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    font-size: 22px !important;
+    color: #ffffff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+/* Header & Menu Typography (14px Oswald Bold Condensed) */
 .header nav a,
 .cdc__nav-links a,
 .cdc-old-menu a,
-.cdc__nav a,
+.cdc__nav a:not(.cdc__brand),
 nav.cdc-old-menu a,
 header a.btn-link,
 header nav a.btn-link {
     font-family: 'Oswald', 'Barlow Condensed', Impact, sans-serif !important;
     text-transform: uppercase !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.12em !important;
-    font-size: 16px !important;
-    color: #ffffff !important;
-    opacity: 0.95 !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    font-size: 14px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
     text-decoration: none !important;
     transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease !important;
 }
@@ -182,6 +194,6 @@ header nav a.btn-link {
 .cdc-old-menu a.active,
 header nav a.btn-link:hover,
 header nav a.btn-link.active {
-    color: #2b4bb0 !important;
+    color: #3b82f6 !important;
     opacity: 1 !important;
 }

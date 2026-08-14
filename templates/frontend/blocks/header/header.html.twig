@@ -145,7 +145,6 @@ html, body { overflow-x: hidden; max-width: 100%; }
   background-image:
     repeating-linear-gradient(45deg, transparent 0 22px, rgba(255,255,255,0.02) 22px 23px);
 }
-
 /* Nav */
 #cdc-navbar-wrapper {
   background: transparent !important;
@@ -156,17 +155,18 @@ html, body { overflow-x: hidden; max-width: 100%; }
   top: 0; left: 0; right: 0;
   z-index: 50;
   transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(5, 8, 15, 0.3) !important;
-  backdrop-filter: blur(12px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
-}
-.cdc__nav--scrolled, header.header:not(.header-transparent) {
-  background: rgba(5, 8, 15, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(5, 8, 15, 0.4) !important;
   backdrop-filter: blur(16px) saturate(180%) !important;
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+.cdc__nav--scrolled, header.header:not(.header-transparent) {
+  background: rgba(5, 8, 15, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 .cdc__nav-inner {
   display: flex;
@@ -174,15 +174,16 @@ html, body { overflow-x: hidden; max-width: 100%; }
   justify-content: space-between;
   height: 72px;
 }
-.cdc__brand {
-  font-family: var(--cdc-font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.cdc__brand, .header-logo span, a.cdc__brand {
+  font-family: var(--cdc-font-display), 'Oswald', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  color: #ffffff !important;
 }
 .cdc__brand-logo {
   width: 32px;
