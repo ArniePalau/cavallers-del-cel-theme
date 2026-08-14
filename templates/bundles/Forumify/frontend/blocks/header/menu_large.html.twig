@@ -1,22 +1,48 @@
 {% extends '@!Forumify/frontend/blocks/header/menu_large.html.twig' %}
 {% block menu_large %}
     <style>
-        .cdc-old-menu ul { list-style: none; display: flex; margin: 0; padding: 0; gap: 2rem; align-items: center; }
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap');
+
+        .cdc-old-menu ul { list-style: none; display: flex; margin: 0; padding: 0; gap: 2.25rem; align-items: center; }
         .cdc-old-menu li { margin: 0; padding: 0; }
-        .cdc-old-menu a { 
-            color: #fff !important; 
-            opacity: 0.8; 
-            text-transform: uppercase; 
-            font-family: 'Oswald', sans-serif; 
-            font-size: 14px; 
-            font-weight: 500; 
-            letter-spacing: 0.05em; 
-            text-decoration: none; 
-            transition: opacity 0.2s ease, color 0.2s ease; 
+        .cdc-old-menu a,
+        .header nav a,
+        .cdc__nav-links a,
+        nav a.btn-link,
+        .cdc__nav a { 
+            color: #ffffff !important; 
+            opacity: 0.95 !important; 
+            text-transform: uppercase !important; 
+            font-family: 'Oswald', 'Barlow Condensed', Impact, sans-serif !important; 
+            font-size: 16px !important; 
+            font-weight: 700 !important; 
+            letter-spacing: 0.12em !important; 
+            text-decoration: none !important; 
+            transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease !important; 
         }
-        .cdc-old-menu a:hover, .cdc-old-menu a.active { opacity: 1; color: var(--cdc-red) !important; }
-        .cdc-user-dropdown { display: flex; align-items: center; cursor: pointer; color: #fff !important; opacity: 0.9; font-family: 'Inter', sans-serif; font-size: 14px; margin-left: 1rem; }
-        .cdc-user-dropdown:hover { opacity: 1; }
+        .cdc-old-menu a:hover, 
+        .cdc-old-menu a.active,
+        .header nav a:hover,
+        .header nav a.active,
+        .cdc__nav a:hover,
+        .cdc__nav a.active { 
+            opacity: 1 !important; 
+            color: #2b4bb0 !important; 
+        }
+        .cdc-user-dropdown { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            color: #ffffff !important; 
+            opacity: 0.95 !important; 
+            font-family: 'Oswald', 'Barlow Condensed', Impact, sans-serif !important; 
+            font-weight: 700 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            font-size: 15px !important; 
+            margin-left: 1.25rem; 
+        }
+        .cdc-user-dropdown:hover { opacity: 1 !important; }
     </style>
     <div class="flex-grow flex flex-row items-center justify-between hide-phone">
         <nav class="cdc-old-menu flex flex-wrap flex-grow justify-end text-large pr-3 mr-3 border-r" style="border: none; margin-right: 1.5rem;">

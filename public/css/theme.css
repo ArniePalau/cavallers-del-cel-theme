@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
 :root, [data-theme="light"], [data-theme="dark"], body, html {
     color-scheme: dark !important;
     --c-primary: #d5d8e3;
@@ -151,4 +153,35 @@ main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-cont
     background-color: #0c1017 !important;
     color: #e2e8f0 !important;
     border-color: #1e293b !important;
+}
+
+/* Header & Menu Typography (Oswald Bold Condensed) */
+.header nav a,
+.cdc__nav-links a,
+.cdc-old-menu a,
+.cdc__nav a,
+nav.cdc-old-menu a,
+header a.btn-link,
+header nav a.btn-link {
+    font-family: 'Oswald', 'Barlow Condensed', Impact, sans-serif !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    font-size: 16px !important;
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+    text-decoration: none !important;
+    transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease !important;
+}
+
+.header nav a:hover,
+.header nav a.active,
+.cdc__nav-links a:hover,
+.cdc__nav-links a.active,
+.cdc-old-menu a:hover,
+.cdc-old-menu a.active,
+header nav a.btn-link:hover,
+header nav a.btn-link.active {
+    color: #2b4bb0 !important;
+    opacity: 1 !important;
 }
