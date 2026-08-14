@@ -36,6 +36,13 @@ body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+/* Hide theme toggle switch */
+a[href*="theme_toggle"], 
+.ph-circle-half-tilt, 
+a:has(.ph-circle-half-tilt) { 
+  display: none !important; 
+}
+
 /* Glassmorphism & Custom Elements */
 .glass-card {
     background: rgba(16, 20, 31, 0.75);
