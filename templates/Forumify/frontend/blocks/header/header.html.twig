@@ -150,9 +150,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
   background: transparent !important;
   min-height: 0 !important;
 }
-.cdc__nav, header.header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
+.cdc__nav {
+  position: relative;
   z-index: 50;
   transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -161,7 +160,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
 }
-.cdc__nav--scrolled, header.header:not(.header-transparent) {
+.cdc__nav--scrolled {
   background: rgba(5, 8, 15, 0.6) !important;
   backdrop-filter: blur(20px) saturate(200%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(200%) !important;

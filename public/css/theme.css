@@ -130,6 +130,21 @@ main, main.responsive, #contingut, .cdc, .ph-app, .ph-main, .ph-layout, .ph-cont
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
+/* Page Spacing: Add breathing room below sticky/fixed navbar on all content pages (forum, roster, profile, etc.) */
+body:not(:has(.cdc__hero)) main.responsive,
+body:not(:has(.cdc__hero)) main,
+body:not(:has(.cdc__hero)) .body-wrapper {
+    padding-top: 36px !important;
+    margin-top: 16px !important;
+}
+
+/* Fallback for profile headers and standalone containers */
+body:not(:has(.cdc__hero)) .user-profile-header,
+body:not(:has(.cdc__hero)) .profile-header,
+body:not(:has(.cdc__hero)) .breadcrumbs {
+    margin-top: 8px !important;
+}
+
 .cdc__hero {
     min-height: calc(100vh - 60px) !important;
     height: calc(100vh - 60px) !important;
