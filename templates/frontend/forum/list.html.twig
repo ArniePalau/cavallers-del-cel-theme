@@ -1,0 +1,48 @@
+{% extends '@Forumify/frontend/base.html.twig' %}
+{% block title_page %}
+    {{- forum is not null ? forum.title : 'forum' -}}
+{% endblock %}
+{% block meta_tags %}
+    {{ parent() }}
+    {% if forum is not null %}
+        {% set description = forum.content|striptags|trim %}
+        <meta property="description" content="{{ description }}">
+        <meta property="og:description" content="{{ description }}">
+        <meta property="twitter:description" content="{{ description }}">
+    {% endif %}
+{% endblock %}
+{% block body %}
+    {{ component('Breadcrumbs', { entity: forum }) }}
+    {% if forum is not null %}
+        <div class="mb-6 p-6 rounded-lg bg-[#0b111c] border border-[#182238] shadow-lg">
+            <h1 class="text-2xl font-bold tracking-wide uppercase text-white font-display mb-2">{{ forum.title }}</h1>
+            {% if forum.content|striptags %}
+                <div class="text-[#a8b0bf] text-sm leading-relaxed">
+                    {{ forum.content|rich }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if groups is not empty or ungroupedForums is not empty %}
+        <div class="forum-list cdc-forum-sections flex flex-col gap-6">
+            {% for group in groups %}
+                {% if can('view', group) %}
+                    {% include '@Forumify/frontend/forum/forum_group.html.twig' with {
+                        title: group.title,
+                        forums: group.forums.toArray
+                    } %}
+                {% endif %}
+            {% endfor %}
+            {% if ungroupedForums is not empty %}
+                {% include '@Forumify/frontend/forum/forum_group.html.twig' with {
+                    forums: ungroupedForums
+                } %}
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if forum is not null %}
+        <div class="mt-8">
+            {{ component('TopicList', { forum: forum }) }}
+        </div>
+    {% endif %}
+{% endblock %}
