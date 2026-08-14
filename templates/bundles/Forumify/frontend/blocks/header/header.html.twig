@@ -1060,7 +1060,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
             <div class="cdc__container cdc__nav-inner" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
                 {% block header_logo %}
                     <a href="{{ path('forumify_core_index') }}" class="cdc__brand" aria-label="{{ setting('forumify.title') }}">
-                        <img src="{{ setting('forumify.logo') ? asset(setting('forumify.logo'), 'forumify.asset') : logo }}" alt="{{ setting('forumify.title') }}" class="cdc__brand-logo" style="height: 38px; width: auto; max-width: 42px; object-fit: contain; margin-right: 10px; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;">
+                        <img src="{{ setting('forumify.logo') ? asset(setting('forumify.logo'), 'forumify.asset') : logo }}" alt="{{ setting('forumify.title') }}" class="cdc__brand-logo" style="height: 38px; width: auto; max-width: 42px; object-fit: contain; margin-right: 10px;">
                         <span>{{ setting('forumify.title') }}</span>
                     </a>
                 {% endblock %}
