@@ -1719,7 +1719,7 @@ nav li:hover > a.active, .header li:hover > a.active {
             <div class="cdc__footer-top">
                 <div class="cdc__footer-brand">
                     <div class="cdc__brand">
-                        <img src="{{ logo }}" alt="logo" style="width: 32px; height: 32px; margin-right: 12px; object-fit: contain;">
+                        <img src="{{ setting('forumify.logo') ? asset(setting('forumify.logo'), 'forumify.asset') : logo }}" alt="logo" style="width: 34px; height: 34px; margin-right: 12px; object-fit: contain; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;">
                         Cavallers del Cel
                     </div>
                     <p>La comunitat catalana de simulació de combat. Volant junts des de fa anys, amb disciplina i companyonia.</p>
