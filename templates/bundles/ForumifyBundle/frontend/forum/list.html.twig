@@ -16,21 +16,120 @@
 
 {% block body %}
     {{ component('Breadcrumbs', { entity: forum }) }}
+
+    {# Forum Header banner / info if inside a forum #}
     {% if forum is not null %}
         <div class="mb-6 p-6 rounded-lg bg-[#0b111c] border border-[#182238] shadow-lg">
             <h1 class="text-2xl font-bold tracking-wide uppercase text-white font-display mb-2">{{ forum.title }}</h1>
             {% if forum.content|striptags %}
-                <div class="text-[#a8b0bf] text-sm leading-relaxed">
+                <div class="text-[#cbd5e1] text-sm leading-relaxed">
                     {{ forum.content|rich }}
                 </div>
             {% endif %}
         </div>
+
+        {# Render subforums in 2-column grid if this forum has children #}
+        {% set visibleChildren = forum.children|filter(sf => can('view', sf)) %}
+        {% if visibleChildren is not empty %}
+            <div class="cdc-forum-group mb-10">
+                <div class="cdc-forum-group__header flex items-center justify-between pb-3 mb-4 border-b border-[#182238]">
+                    <h3 class="text-xl font-bold tracking-wider uppercase text-white font-display flex items-center gap-2 m-0">
+                        <span class="w-1.5 h-4 bg-[#2b4bb0] rounded-sm inline-block"></span>
+                        Sub-fòrums
+                    </h3>
+                </div>
+
+                <div class="cdc-forum-grid">
+                    {% for item in visibleChildren %}
+                        {% set link = path('forumify_forum_forum', { slug: item.slug }) %}
+                        {% set isFullWidth = (loop.last and (visibleChildren|length % 2 != 0)) %}
+                        {% set bannerUrl = asset('storage/assets/nodes/node_' ~ item.id ~ '.jpg') %}
+
+                        <div class="cdc-forum-card {% if isFullWidth %}cdc-forum-card--full{% endif %}" 
+                             style="--forum-bg-img: url('{{ bannerUrl }}');">
+                            
+                            <div class="cdc-forum-card__bg"></div>
+                            <div class="cdc-forum-card__overlay"></div>
+
+                            <div class="cdc-forum-card__body">
+                                <div class="cdc-forum-card__main">
+                                    <div class="cdc-forum-card__icon">
+                                        <i class="ph ph-chat-text"></i>
+                                    </div>
+                                    <div class="cdc-forum-card__info">
+                                        <div class="flex items-center gap-2">
+                                            <h4 class="cdc-forum-card__title">
+                                                <a href="{{ link }}">{{ item.title }}</a>
+                                            </h4>
+                                            {{ component('ReadMarker', { item: item }) }}
+                                        </div>
+                                        
+                                        {% if item.content %}
+                                            <p class="cdc-forum-card__desc">{{ item.content|striptags|u.truncate(140, '...') }}</p>
+                                        {% endif %}
+
+                                        {% set grandChildren = item.children|filter(gc => can('view', gc)) %}
+                                        {% if grandChildren is not empty %}
+                                            <div class="cdc-forum-card__stats">
+                                                <div class="cdc-subforums-wrapper">
+                                                    <button type="button" class="cdc-subforums-btn">
+                                                        <i class="ph ph-git-fork"></i>
+                                                        Sub-fòrums ({{ grandChildren|length }})
+                                                        <i class="ph ph-caret-down text-xs"></i>
+                                                    </button>
+                                                    <div class="cdc-subforums-dropdown">
+                                                        {% for gc in grandChildren %}
+                                                            <a href="{{ path('forumify_forum_forum', { slug: gc.slug }) }}" class="cdc-subforum-item">
+                                                                <i class="ph ph-arrow-bend-down-right"></i>
+                                                                <span>{{ gc.title }}</span>
+                                                            </a>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                {% set lastComment = item|last_comment %}
+                                <div class="cdc-forum-card__footer">
+                                    {% if lastComment is not null %}
+                                        {% set topic = lastComment.topic %}
+                                        <div class="cdc-forum-card__latest">
+                                            <a href="{{ path('forumify_forum_topic', { slug: topic.slug }) }}" class="cdc-latest-topic-link" title="{{ topic.title }}">
+                                                {{ topic.title|u.truncate(45, '...') }}
+                                            </a>
+                                            <div class="cdc-latest-meta">
+                                                <span>{{ lastComment.createdAt|format_date }}</span>
+                                                <span class="opacity-40">·</span>
+                                                <span class="cdc-latest-author">
+                                                    {% include '@Forumify/components/username.html.twig' with { user: lastComment.createdBy } only %}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="cdc-forum-card__latest opacity-50">
+                                            <span class="text-xs text-[#cbd5e1]">Sense activitat recent</span>
+                                        </div>
+                                    {% endif %}
+
+                                    <a href="{{ link }}" class="cdc-forum-card__arrow" aria-label="Entrar a {{ item.title }}">
+                                        <i class="ph ph-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     {% endif %}
 
-    {% if groups is not empty or ungroupedForums is not empty %}
+    {# Main /forum Category List: Only Top-Level Forums (parent is null) #}
+    {% if forum is null and (groups is not empty or ungroupedForums is not empty) %}
         <div class="cdc-forum-container flex flex-col gap-10">
             {% for group in groups %}
-                {% set visibleForums = group.forums|filter(f => can('view', f)) %}
+                {% set visibleForums = group.forums|filter(f => can('view', f) and not f.parent) %}
                 {% if visibleForums is not empty %}
                     <div class="cdc-forum-group">
                         <div class="cdc-forum-group__header flex items-center justify-between pb-3 mb-4 border-b border-[#182238]">
@@ -70,27 +169,25 @@
                                                     <p class="cdc-forum-card__desc">{{ item.content|striptags|u.truncate(140, '...') }}</p>
                                                 {% endif %}
 
-                                                {% if item.children is not empty %}
-                                                    {% set visibleChildren = item.children|filter(subforum => can('view', subforum)) %}
-                                                    {% if visibleChildren is not empty %}
-                                                        <div class="cdc-forum-card__stats">
-                                                            <div class="cdc-subforums-wrapper" data-controller="dropdown">
-                                                                <button type="button" class="cdc-subforums-btn" data-action="dropdown#toggle">
-                                                                    <i class="ph ph-git-fork"></i>
-                                                                    Sub-fòrums ({{ visibleChildren|length }})
-                                                                    <i class="ph ph-caret-down text-xs"></i>
-                                                                </button>
-                                                                <div class="cdc-subforums-dropdown d-none" data-dropdown-target="menu">
-                                                                    {% for subforum in visibleChildren %}
-                                                                        <a href="{{ path('forumify_forum_forum', { slug: subforum.slug }) }}" class="cdc-subforum-item">
-                                                                            <i class="ph ph-arrow-bend-down-right"></i>
-                                                                            <span>{{ subforum.title }}</span>
-                                                                        </a>
-                                                                    {% endfor %}
-                                                                </div>
+                                                {% set directChildren = item.children|filter(subforum => can('view', subforum)) %}
+                                                {% if directChildren is not empty %}
+                                                    <div class="cdc-forum-card__stats">
+                                                        <div class="cdc-subforums-wrapper">
+                                                            <button type="button" class="cdc-subforums-btn">
+                                                                <i class="ph ph-git-fork"></i>
+                                                                Sub-fòrums ({{ directChildren|length }})
+                                                                <i class="ph ph-caret-down text-xs"></i>
+                                                            </button>
+                                                            <div class="cdc-subforums-dropdown">
+                                                                {% for subforum in directChildren %}
+                                                                    <a href="{{ path('forumify_forum_forum', { slug: subforum.slug }) }}" class="cdc-subforum-item">
+                                                                        <i class="ph ph-arrow-bend-down-right"></i>
+                                                                        <span>{{ subforum.title }}</span>
+                                                                    </a>
+                                                                {% endfor %}
                                                             </div>
                                                         </div>
-                                                    {% endif %}
+                                                    </div>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -114,7 +211,7 @@
                                                 </div>
                                             {% else %}
                                                 <div class="cdc-forum-card__latest opacity-50">
-                                                    <span class="text-xs text-[#8a93a3]">Sense activitat recent</span>
+                                                    <span class="text-xs text-[#cbd5e1]">Sense activitat recent</span>
                                                 </div>
                                             {% endif %}
 
@@ -132,6 +229,7 @@
         </div>
     {% endif %}
 
+    {# Topic List when inside a specific leaf forum #}
     {% if forum is not null %}
         <div class="mt-8">
             {{ component('TopicList', { forum: forum }) }}
