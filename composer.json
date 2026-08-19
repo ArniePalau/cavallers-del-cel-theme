@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "arniepalau/cc-composite": "^1.11",
         "forumify/forumify-platform": ">=1.0"
     },
     "autoload": {

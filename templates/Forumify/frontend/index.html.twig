@@ -428,10 +428,25 @@ nav li:hover > a.active, .header li:hover > a.active {
   flex-direction: column;
   background: var(--cdc-bg-2);
   border: 1px solid var(--cdc-line);
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .cdc__op-card:hover { border-color: var(--cdc-red); }
-.cdc__op-image { aspect-ratio: 4/3; }
+.cdc__op-image {
+  aspect-ratio: 4/3;
+  background-color: var(--cdc-bg-3);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 1px solid var(--cdc-line);
+}
+.cdc__op-image--empty {
+  background-image:
+    linear-gradient(135deg, rgba(30,58,138,0.16), transparent 55%),
+    repeating-linear-gradient(45deg, transparent 0 24px, rgba(255,255,255,0.025) 24px 25px);
+}
 .cdc__op-body {
   padding: 24px;
   display: flex;
@@ -1404,34 +1419,22 @@ nav li:hover > a.active, .header li:hover > a.active {
                     <span class="cdc__eyebrow">Operacions destacades</span>
                     <h2 class="cdc__h2">Missions en curs</h2>
                 </div>
+                {% set recentCampaignReports = cc_recent_campaign_reports(3) %}
                 <div class="cdc__ops-grid">
-                    <article class="cdc__op-card">
-                        <div class="cdc__ph cdc__op-image" data-swap="Formació de F-16 sobrevolant els Pirineus" aria-hidden="true"></div>
-                        <div class="cdc__op-body">
-                            <span class="cdc__op-code">OP-01 · DCS</span>
-                            <h3 class="cdc__op-title">Escut del Pirineu</h3>
-                            <p class="cdc__op-brief">Patrulla aèria de defensa sobre territori muntanyós.</p>
-                            <span class="cdc__op-cta">Llegir informe</span>
-                        </div>
-                    </article>
-                    <article class="cdc__op-card">
-                        <div class="cdc__ph cdc__op-image" data-swap="F-16 en aproximació a base desèrtica al capvespre" aria-hidden="true"></div>
-                        <div class="cdc__op-body">
-                            <span class="cdc__op-code">OP-02 · BMS</span>
-                            <h3 class="cdc__op-title">Tempesta de sorra</h3>
-                            <p class="cdc__op-brief">Operació d'atac coordinat en escenari desèrtic.</p>
-                            <span class="cdc__op-cta">Llegir informe</span>
-                        </div>
-                    </article>
-                    <article class="cdc__op-card">
-                        <div class="cdc__ph cdc__op-image" data-swap="Caça sobre el mar al matí, formació de dos" aria-hidden="true"></div>
-                        <div class="cdc__op-body">
-                            <span class="cdc__op-code">OP-03 · DCS</span>
-                            <h3 class="cdc__op-title">Vigilància marítima</h3>
-                            <p class="cdc__op-brief">Reconeixement i interceptació sobre el Mediterrani.</p>
-                            <span class="cdc__op-cta">Llegir informe</span>
-                        </div>
-                    </article>
+                    {% for report in recentCampaignReports %}
+                        {% set campaign = report.campaign %}
+                        <a class="cdc__op-card" href="{{ path('cc_composite_field_reports_campaign', {slug: campaign.slug}) }}">
+                            <div class="cdc__op-image{% if not campaign.imagePath %} cdc__op-image--empty{% endif %}"{% if campaign.imagePath %} style="background-image:linear-gradient(rgba(5,9,18,0.08),rgba(5,9,18,0.34)),url('{{ asset(campaign.imagePath, 'cc_composite.asset')|e('html_attr') }}')"{% endif %} role="img" aria-label="{{ campaign.name }}"></div>
+                            <div class="cdc__op-body">
+                                <span class="cdc__op-code">Darrera activitat · {{ report.startedAt|date('d/m/Y') }}</span>
+                                <h3 class="cdc__op-title">{{ campaign.name }}</h3>
+                                <p class="cdc__op-brief">{{ campaign.description|default(report.missionName|replace({'_': ' '})) }}</p>
+                                <span class="cdc__op-cta">Veure campanya</span>
+                            </div>
+                        </a>
+                    {% else %}
+                        <p class="cdc__op-brief">Encara no hi ha campanyes amb informes visibles.</p>
+                    {% endfor %}
                 </div>
             </div>
         </section>
