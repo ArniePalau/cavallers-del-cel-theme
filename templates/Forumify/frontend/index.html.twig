@@ -437,10 +437,25 @@ nav li:hover > a.active, .header li:hover > a.active {
 .cdc__op-image {
   aspect-ratio: 4/3;
   background-color: var(--cdc-bg-3);
-  background-position: center;
+  background-position: 0% 50%;
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom: 1px solid var(--cdc-line);
+  transition: background-position 0.8s ease-out;
+}
+@keyframes cdcOpPan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.cdc__op-card:hover .cdc__op-image:not(.cdc__op-image--empty) {
+  animation: cdcOpPan 10s ease-in-out infinite;
 }
 .cdc__op-image--empty {
   background-image:
